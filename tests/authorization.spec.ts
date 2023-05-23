@@ -19,20 +19,18 @@ test.describe('Неклассифицированные проверки', () =>
   })
 })
 
-
-
-test.describe('попытка ввести данные для тестов из самих тестов', () => {
+test.describe.only('попытка задать вводимые данные для теста через параметризацию', () => {
   let authorizationPage: AuthorizationPage;
   let testData: TestData;
   testData = new TestData() // не понимаю, что объявляю в последних двух строках
-  testData.usernamePasswordInputData.forEach(data => {//это ввыглядит, как костыль, потому что в таком варианте исполнения я не могу обращаться только к конкретному значению из testData, потому что он каждый раз прогоняет для всех (ссылка в __1__)
 
-    test(`parametrized test ${data.username}`, async ({ page }) => { //если не добавлять ${data.username}, то будет ошибка  "duplicate test titles are not allowed", я обошел данный момент добавлением ${data.username}, но как будто это костыль. Существуют ли другие варианты или норм?
+  for (const data of testData.usernamePasswordInputData) {
+    test(`parametrized test ${data.username}`, async ({ page }) => {
       authorizationPage = new AuthorizationPage(page)
       await authorizationPage.navigate();
-      await authorizationPage.authFormFill(data.username, data.password)//__1__ я хочу обратиться к конкретному username[1], но он у меня обращается ко всем из-за foreach 
+      await authorizationPage.authFormFill(data.username[1], data.password[1])//__1__ я хочу обратиться к конкретному username[1], но он у меня обращается ко всем из-за foreach 
     })
-  })
+  }
 })
 
 test.describe('Проверка валидности паролей', () => {
