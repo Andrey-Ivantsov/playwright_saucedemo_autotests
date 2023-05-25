@@ -28,7 +28,7 @@ test.describe.only('попытка задать вводимые данные д
     test(`parametrized test ${data.username}`, async ({ page }) => {
       authorizationPage = new AuthorizationPage(page)
       await authorizationPage.navigate();
-      await authorizationPage.authFormFill(data.username[1], data.password[1])//__1__ я хочу обратиться к конкретному username[1], но он у меня обращается ко всем из-за foreach 
+      await authorizationPage.authFormFill(data.username, data.password)//__1__ я хочу обратиться к конкретному username[1], но он у меня обращается ко всем из-за foreach 
     })
   }
 })
@@ -41,14 +41,14 @@ test.describe('Проверка валидности паролей', () => {
     await authorizationPage.navigate()
   })
 
-  test('тест для валидных данных пользователя', async ({ page }) => {
+  test('тест для валидных данных пользователя', async () => {
     await authorizationPage.authFormFill('standard_user', 'secret_sauce');
-    await expect(page).toHaveURL('https://www.saucedemo.com/inventory.html')
+    await expect(authorizationPage.page).toHaveURL('https://www.saucedemo.com/inventory.html')
   })
 
-  test('тест для заблокированного пользователя', async ({ page }) => {
+  test('тест для заблокированного пользователя', async () => {
     await authorizationPage.authFormFill('locked_out_user', 'secret_sauce')
-    await expect(page.getByText('Epic sadface: Sorry, this user has been locked out.')).toBeVisible()
+    await expect(authorizationPage.error).toBeVisible()
   })
 
   test('тест для несуществующего пользователя', async ({ page }) => {

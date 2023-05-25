@@ -5,12 +5,13 @@ class AuthorizationPage {
   loginButton: Locator;
   userNameField: Locator;
   passwordField: Locator;
+  error: Locator;
   constructor(page: Page) {
     this.page = page;
     this.loginButton = page.locator('#login-button');
     this.userNameField = page.locator('[data-test="username"]');
     this.passwordField = page.locator('[data-test="password"]');
-
+    this.error = page.locator('[data-test="error"]')
   }
   async navigate() {
     await this.page.goto('https://www.saucedemo.com/')

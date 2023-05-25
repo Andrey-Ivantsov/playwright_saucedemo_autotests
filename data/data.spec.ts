@@ -5,7 +5,7 @@ class TestData {
   },
   {
     username: "locked_out_user",
-    password: "secret_sauce"
+    password: "secret_sauce1"
   }//,
     // {
     //   username: "problem_user",
@@ -16,5 +16,6 @@ class TestData {
     //   password: "secret_sauce"
     // }
   ]
+
 }
 export default TestData
