@@ -19,16 +19,16 @@ test.describe('Неклассифицированные проверки', () =>
   })
 })
 
-test.describe.only('попытка задать вводимые данные для теста через параметризацию', () => {
+test.describe('попытка задать вводимые данные для теста через параметризацию', () => {
   let authorizationPage: AuthorizationPage;
   let testData: TestData;
-  testData = new TestData() // не понимаю, что объявляю в последних двух строках
+  testData = new TestData()
 
   for (const data of testData.usernamePasswordInputData) {
     test(`parametrized test ${data.username}`, async ({ page }) => {
       authorizationPage = new AuthorizationPage(page)
       await authorizationPage.navigate();
-      await authorizationPage.authFormFill(data.username, data.password)//__1__ я хочу обратиться к конкретному username[1], но он у меня обращается ко всем из-за foreach 
+      await authorizationPage.authFormFill(data.username, data.password)
     })
   }
 })
