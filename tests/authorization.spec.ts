@@ -3,6 +3,8 @@ import TestData from '../data/data.spec';
 import AuthorizationPage from '../pages/authorization.page';
 
 test.describe('Неклассифицированные проверки', () => {
+  test.use({storageState: 'notLoggedInState.json'})
+
   let authorizationPage: AuthorizationPage;
 
   test.beforeEach(async ({ page }) => {
@@ -20,6 +22,8 @@ test.describe('Неклассифицированные проверки', () =>
 })
 
 test.describe('попытка задать вводимые данные для теста через параметризацию', () => {
+  test.use({storageState: 'notLoggedInState.json'})
+
   let authorizationPage: AuthorizationPage;
   let testData: TestData;
   testData = new TestData()
@@ -34,6 +38,8 @@ test.describe('попытка задать вводимые данные для 
 })
 
 test.describe('Проверка валидности паролей', () => {
+  test.use({storageState: 'notLoggedInState.json'})
+  
   let authorizationPage: AuthorizationPage;
 
   test.beforeEach(async ({ page }) => {
