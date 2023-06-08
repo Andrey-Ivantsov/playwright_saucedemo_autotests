@@ -30,8 +30,8 @@ test.describe('tests for inventory page', () => {
 
   test('close burger menu', async ({ page }) => {
     await inventoryPage.BurgerMenu().openBurgerMenu();
-    await inventoryPage.BurgerMenu().closeBurgerMenu()
-    await expect(inventoryPage.burgerMenu).not.toBeVisible()
+    await inventoryPage.BurgerMenu().closeBurgerMenu();
+    await expect(inventoryPage.burgerMenu).not.toBeVisible();
   })
 
   const filters = [
@@ -42,16 +42,16 @@ test.describe('tests for inventory page', () => {
   ]
 
   test('filters has 4 items', async ({ page }) => {
-    expect(await inventoryPage.getFilters()).toEqual(filters)
+    expect(await inventoryPage.getFilters()).toEqual(filters);
   })
 
   test('filter high to low', async ({ page }) => {
     let prices = await inventoryPage.getPricesHTL();
     let sortedPrices = (await inventoryPage.getPricesHTL()).sort(function (a, b) {
       return b - a
-    })
+    });
     const isEqual = prices.every((value, index) => value === sortedPrices[index]);
-    expect(isEqual).toBeTruthy()
+    await expect(isEqual).toBeTruthy();
   })
 
 })
